@@ -1,0 +1,5 @@
+1. Read and store vehicle information from JSON files (restricted to 4 types of vehicles in 2nd point of Group Assignment 1.pdf) (check if dealer accepts vehicles)
+2. Add dealers and track collection of dealers (If dealer doesn't exist make a new instance of one with acquisition enabled by default)
+3. Export Vehicle inventory of each dealer to a JSON
+4. Support the 3 commands in the fifth point of Group Assignment 1.pdf (Restricted add command by sixth point of Group Assignment 1.pdf)
+5. List each dealer's vehicle inventory in the interface
