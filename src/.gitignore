@@ -1,4 +1,5 @@
-*.log
+**/build
+**/.idea
 *.class
+*.log
 **/bin
-*.idea
