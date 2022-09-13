@@ -54,8 +54,8 @@ public class Dealership {
     @Override
     public String toString() {
         String inventory = "";
-        for( Vehicle car : this.vehicleInventory.values()) {
-            inventory += car.toString();
+        for( Map.Entry<Integer, Vehicle> car : this.vehicleInventory.entrySet()) {
+            inventory += car.getKey() + "\n_______________\nVehicle ID: " + car.getValue().getVehicleID() + "\nDealership ID: " + car.getValue().getDealershipID() + "\nVehicle Type: " + car.getValue().getVehicleType() + "\nVehicle Model: " + car.getValue().getVehicleModel() + "\nVehicle Manufacturer: " + car.getValue().getVehicleManufacturer() + "\nPrice: $" + car.getValue().getPrice() + "\nAcquisition Date: " + car.getValue().getAcquisitionDate() + "\n";
         }
         return inventory;
     }
