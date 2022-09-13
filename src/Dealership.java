@@ -1,26 +1,43 @@
 package src;
-import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
 public class Dealership {
     private int dealerID;
     private boolean vehicleAcquisition;
-    private ArrayList<Vehicle> vehicleInventory;
+    private Map<Integer, Vehicle> vehicleInventory;
+    private int vehicleKey = 0;
+
+    
+    //getters
+    public int getDealerID() {
+        return dealerID;
+    }
+
+    public boolean isVehicleAcquisition() {
+        return vehicleAcquisition;
+    }
+
+    public Map<Integer, Vehicle> getVehicleInventory() {
+        return vehicleInventory;
+    }
 
     public Dealership(int newDealer) {
         dealerID = newDealer;
         vehicleAcquisition = true;
-        vehicleInventory = new ArrayList<Vehicle>();
+        vehicleInventory = new HashMap<>();
     }
-
-    public Dealership(int dealerID, boolean vehicleAcquisition, ArrayList<Vehicle> vehicleInventory) {
+    //constructors
+    public Dealership(int dealerID, boolean vehicleAcquisition, HashMap<Integer, Vehicle> vehicleInventory) {
         this.dealerID = dealerID;
         this.vehicleAcquisition = vehicleAcquisition;
         this.vehicleInventory = vehicleInventory;
     }
-
+    //methods
     public void addIncomingVehicle(Vehicle car) {
         if(vehicleAcquisition == true){
-        this.vehicleInventory.add(car);
+        this.vehicleInventory.put(vehicleKey, car);
+        vehicleKey++;
         } else {
             System.out.println("This dealer is not allowed to add additional vehicles to their inventory");
         }
@@ -37,8 +54,8 @@ public class Dealership {
     @Override
     public String toString() {
         String inventory = "";
-        for (Vehicle automobile : vehicleInventory) {
-            inventory += "\n" + automobile.toString();
+        for( Vehicle car : this.vehicleInventory.values()) {
+            inventory += car.toString();
         }
         return inventory;
     }
