@@ -3,15 +3,15 @@ import java.util.List;
 
 public class Vehicle {
 	private int vehicleID;
-	private Dealer dealershipID;
+	private int dealershipID;
 	private String vehicleType;
 	private String vehicleModel;
 	private String vehicleManufacturer;
 	private Double price;
 	private Date acquisitionDate;
 
-	public Vehicle(int vehicleID, Dealer dealershipID, String vehicleType, String vehicleModel,
-			String vehicleManufacturer, Double price, Date acquisitionDate) {
+	public Vehicle(int vehicleID, int dealershipID, String vehicleType, String vehicleModel, String vehicleManufacturer,
+			Double price, Date acquisitionDate) {
 		this.vehicleID = vehicleID;
 		this.dealershipID = dealershipID;
 		this.vehicleType = vehicleType;
@@ -29,11 +29,11 @@ public class Vehicle {
 		this.vehicleID = vehicleID;
 	}
 
-	public Dealer getDealershipID() {
+	public int getDealershipID() {
 		return dealershipID;
 	}
 
-	public void setDealershipID(Dealer dealershipID) {
+	public void setDealershipID(int dealershipID) {
 		this.dealershipID = dealershipID;
 	}
 
@@ -75,6 +75,21 @@ public class Vehicle {
 
 	public void setAcquisitionDate(Date acquisitionDate) {
 		this.acquisitionDate = acquisitionDate;
+	}
+
+	@Override
+	public String toString() {
+
+		String summary = "Vehicle Information\n" + "---------------------------------------------------\n";
+		String heading = String.format("%-16s%-11s%-5s%-12s%-12s%-12s%-12s\n", "Vehicle ID", "Dealership ID",
+				"Vehicle Type", "Vehicle Model", "Vehicle Manufacturer", "Price", "Acquisition Date");
+
+		String secondLine = "-----------------------------------------------------------------------------------------\n";
+
+		String info = String.format("%-16s%-11s%-5s%-12s%-12s%-12s%-12s\n", vehicleID, dealershipID, vehicleType,
+				vehicleModel, vehicleManufacturer, price, acquisitionDate);
+
+		return summary + heading + secondLine + info;
 	}
 
 }
