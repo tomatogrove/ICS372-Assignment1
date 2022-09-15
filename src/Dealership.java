@@ -6,7 +6,6 @@ public class Dealership {
     private int dealerID;
     private boolean vehicleAcquisition;
     private Map<Integer, Vehicle> vehicleInventory;
-    private int vehicleKey = 0;
 
     
     //getters
@@ -34,10 +33,9 @@ public class Dealership {
         this.vehicleInventory = vehicleInventory;
     }
     //methods
-    public void addIncomingVehicle(Vehicle car) {
+    public void addIncomingVehicle(int stockNumber, Vehicle car) {
         if(vehicleAcquisition == true){
-        this.vehicleInventory.put(vehicleKey, car);
-        vehicleKey++;
+        this.vehicleInventory.put(stockNumber, car);
         } else {
             System.out.println("This dealer is not allowed to add additional vehicles to their inventory");
         }
@@ -51,11 +49,10 @@ public class Dealership {
         dealer.vehicleAcquisition = false;
     }
 
-    @Override
-    public String toString() {
+    public String inventory(Dealer dealership) {
         String inventory = "";
         for( Map.Entry<Integer, Vehicle> car : this.vehicleInventory.entrySet()) {
-            inventory += car.getKey() + "\n_______________\nVehicle ID: " + car.getValue().getVehicleID() + "\nDealership ID: " + car.getValue().getDealershipID() + "\nVehicle Type: " + car.getValue().getVehicleType() + "\nVehicle Model: " + car.getValue().getVehicleModel() + "\nVehicle Manufacturer: " + car.getValue().getVehicleManufacturer() + "\nPrice: $" + car.getValue().getPrice() + "\nAcquisition Date: " + car.getValue().getAcquisitionDate() + "\n";
+            inventory += car.getValue().toString();
         }
         return inventory;
     }
