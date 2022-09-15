@@ -3,4 +3,5 @@
 *.class
 *.log
 **/bin
-*.project
+**/.project
+ICS_372/bin/.project
