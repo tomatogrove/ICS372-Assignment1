@@ -34,22 +34,28 @@ public class Dealership {
     }
     //methods
     public void addIncomingVehicle(int stockNumber, Vehicle car) {
-        if(vehicleAcquisition == true){
-        this.vehicleInventory.put(stockNumber, car);
+        if(car.getVehicleType().equalsIgnoreCase("SUV") || car.getVehicleType().equalsIgnoreCase("Sedan") || car.getVehicleType().equalsIgnoreCase("Pickup") || car.getVehicleType().equalsIgnoreCase("Sports Car")) {
+            if(vehicleAcquisition == true && this.vehicleInventory.containsKey(stockNumber) == false){
+                this.vehicleInventory.put(stockNumber, car);
+            } else if(vehicleAcquisition == false){
+                System.out.println("This dealer is not allowed to add additional vehicles to their inventory");
+            } else if(this.vehicleInventory.containsKey(stockNumber) == true) {
+                System.out.println("This vehicle is already in this dealer's inventory");
+            }
         } else {
-            System.out.println("This dealer is not allowed to add additional vehicles to their inventory");
+            System.out.println("Not a valid vehicle type.");
         }
     }
 
-    public void enableDealerVehicleAcquisition(Dealership dealer) {
-        dealer.vehicleAcquisition = true;
+    public void enableDealerVehicleAcquisition() {
+        this.vehicleAcquisition = true;
     }
 
-    public void disableDealerVehicleAcquisition(Dealership dealer) {
-        dealer.vehicleAcquisition = false;
+    public void disableDealerVehicleAcquisition() {
+        this.vehicleAcquisition = false;
     }
 
-    public String inventory(Dealer dealership) {
+    public String inventory() {
         String inventory = "";
         for( Map.Entry<Integer, Vehicle> car : this.vehicleInventory.entrySet()) {
             inventory += car.getValue().toString();
