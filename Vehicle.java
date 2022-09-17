@@ -8,10 +8,10 @@ public class Vehicle {
 	private String vehicleModel;
 	private String vehicleManufacturer;
 	private Double price;
-	private Date acquisitionDate;
+	private String acquisitionDate;
 
 	public Vehicle(int vehicleID, int dealershipID, String vehicleType, String vehicleModel, String vehicleManufacturer,
-			Double price, Date acquisitionDate) {
+			Double price, String acquisitionDate) {
 		this.vehicleID = vehicleID;
 		this.dealershipID = dealershipID;
 		this.vehicleType = vehicleType;
@@ -69,11 +69,11 @@ public class Vehicle {
 		this.price = price;
 	}
 
-	public Date getAcquisitionDate() {
+	public String getAcquisitionDate() {
 		return acquisitionDate;
 	}
 
-	public void setAcquisitionDate(Date acquisitionDate) {
+	public void setAcquisitionDate(String acquisitionDate) {
 		this.acquisitionDate = acquisitionDate;
 	}
 
