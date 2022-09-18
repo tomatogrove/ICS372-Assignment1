@@ -146,8 +146,8 @@ public class AddVehicleGUI extends JFrame {
 						!price.getText().trim().isEmpty() && !acquisition_date.getText().isEmpty() &&
 						!manufacturerValue.getText().isEmpty() ) {
 					
-				int id = Integer.parseInt(vehicleId.getText());
-				int dealer=  Integer.parseInt(dealerID.getText());
+				String id = vehicleId.getText();
+				String dealer=  dealerID.getText();
 				String type =  vehicleType.getText();
 				String model = vehicleModel.getText();
 				double value = Double.parseDouble(price.getText());

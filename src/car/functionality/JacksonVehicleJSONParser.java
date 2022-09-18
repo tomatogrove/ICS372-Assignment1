@@ -31,6 +31,7 @@ public class JacksonVehicleJSONParser {
 
         } catch (IOException e) {
             System.out.println("File path not accessible or does not exist.");
+            System.out.println(filePath);
         }
 
         return vehicles;

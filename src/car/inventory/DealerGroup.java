@@ -41,7 +41,7 @@ public class DealerGroup {
 	}
 
 	public Dealership getDealer() {
-		Dealership getDealer = new Dealership(0);
+		Dealership getDealer = new Dealership("");
 		for (Dealership dealer : dealers) {
 			getDealer = dealer;
 		}
@@ -50,7 +50,7 @@ public class DealerGroup {
 
 
 	//methods that need to be implemented
-	public Dealership getDealer(int dealerID) {
+	public Dealership getDealer(String dealerID) {
 		return null;
 	}
 

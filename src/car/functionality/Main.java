@@ -6,8 +6,7 @@ import iabGUI.Vehicle;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -85,10 +84,12 @@ public class Main {
     private static void tryAddVehicles(String[] commandAndParameter, DealerGroup dealerGroup) {
         try {
             VehicleJSONParser simpleParser = new VehicleJSONParser(commandAndParameter[1]);
-            List<Vehicle> simpleVehicles = simpleParser.buildMap().values().stream()
-                    .map((vehicle) -> (Vehicle) vehicle)
-                    .collect(Collectors.toList());
-            dealerGroup.addIncomingVehicles(simpleVehicles);
+
+            List<Object> simpleVehicles = ((List<Object>) simpleParser.buildMap().get("car_inventory")).stream()
+                    .map(o -> ((LinkedHashMap<String, Object>) o).).collect(Collectors.toList());
+
+            simpleVehicles.toString();
+//            dealerGroup.addIncomingVehicles(simpleVehicles);
         } catch (IOException | ParseException e) {
             System.out.println("Input file is invalid or inaccessible");
         }
@@ -96,7 +97,7 @@ public class Main {
 
     private static Dealership getDealer(DealerGroup dealerGroup, String[] commandAndParameter) {
         if (commandAndParameter.length > 1) {
-            Dealership dealer = dealerGroup.getDealer(Integer.parseInt(commandAndParameter[1]));
+            Dealership dealer = dealerGroup.getDealer(commandAndParameter[1]);
             if (dealer != null) {
                 return dealer;
             } else {
