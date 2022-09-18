@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.nio.file.Path;
 
-import car.functionality.VehicleWrapper;
 import car.inventory.Dealership;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONArray;
