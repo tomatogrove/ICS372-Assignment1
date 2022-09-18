@@ -8,6 +8,8 @@ import java.util.Map;
 import java.nio.file.Path;
 
 import car.inventory.Dealership;
+import iabGUI.Vehicle;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;

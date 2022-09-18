@@ -1,12 +1,20 @@
 package iabGUI;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Vehicle {
+	@JsonProperty("vehicle_id")
 	private int vehicleID;
+	@JsonProperty("dealership_id")
 	private int dealershipID;
+	@JsonProperty("vehicle_type")
 	private String vehicleType;
+	@JsonProperty("vehicle_model")
 	private String vehicleModel;
+	@JsonProperty("vehicle_manufacturer")
 	private String vehicleManufacturer;
 	private Double price;
+	@JsonProperty("acquisition_date")
 	private String acquisitionDate;
 
 	public Vehicle(int vehicleID, int dealershipID, String vehicleType, String vehicleModel, String vehicleManufacturer,
