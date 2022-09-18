@@ -1,12 +1,14 @@
-package java.car.functionality;
+package car.functionality;
 
-import java.car.inventory.Dealer;
-import java.car.inventory.Vehicle;
+import car.inventory.Dealer;
+import car.inventory.Vehicle;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -20,20 +22,16 @@ public class VehicleJSONParser {
         mapper = new ObjectMapper();
     }
 
-
     public void write(Dealer dealer) {
         String filePath = "./dealer" + dealer.getDealershipID() + "Inventory.json";
         File file = new File(filePath);
         try {
             file.createNewFile();
-            Path path = Paths.get(filePath);
-            Files.writeString(path, "carInventory{\n");
 
-            for (Map.Entry<Integer, Vehicle> vehicle : dealer.getVehicles().entrySet()) {
-                mapper.writeValue(file, vehicle);
-            }
+            VehicleWrapper wrapper = new VehicleWrapper();
+            wrapper.setCar_inventory(new ArrayList<>(dealer.getVehicles().values()));
 
-            Files.writeString(path, "}");
+            mapper.writeValue(file, wrapper);
         } catch (IOException e) {
             e.printStackTrace();
         }
