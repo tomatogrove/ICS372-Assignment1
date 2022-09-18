@@ -1,6 +1,5 @@
 package car.functionality;
 
-
 import car.inventory.DealerGroup;
 import car.inventory.Dealership;
 import iabGUI.Vehicle;

@@ -1,8 +1,5 @@
 package iabGUI;
 
-import java.util.Date;
-import java.util.List;
-
 public class Vehicle {
 	private int vehicleID;
 	private int dealershipID;
