@@ -11,7 +11,7 @@ public class Main {
 
 
     public static void main(String[]args) {
-        VehicleJSONParser json = new VehicleJSONParser();
+        JacksonVehicleJSONParser json = new JacksonVehicleJSONParser();
         DealerGroup dealerGroup = new DealerGroup();
         boolean keepRunning = true;
         String command;
@@ -36,7 +36,7 @@ public class Main {
         }
     }
 
-    private static boolean checkCommand(String command, VehicleJSONParser json, DealerGroup dealerGroup) {
+    private static boolean checkCommand(String command, JacksonVehicleJSONParser json, DealerGroup dealerGroup) {
         String[] commandAndParameter = command.split(" ", 2);
         Dealership dealer;
 
