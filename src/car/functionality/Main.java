@@ -1,8 +1,10 @@
 package car.functionality;
 
-import car.inventory.Dealer;
+
 import car.inventory.DealerGroup;
-import car.inventory.Vehicle;
+import car.inventory.Dealership;
+import iabGUI.Vehicle;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,13 +21,14 @@ public class Main {
         System.out.println("Welcome to the Car Inventory Program. \n"
                 + "When entering functions with parameters, follow this format: function parameter");
         while (keepRunning) {
-            System.out.println("Choose one of the following commands:"
-            + "\naddIncomingVehicles filePath"
-            + "\nexportDealerVehicles dealerShipID"
-            + "\ndisplayDealerVehicles"
-            + "\nenableDealerVehicleAcquisition dealerShipID"
-            + "\ndisableDealerVehicleAcquisition dealerShipID"
-            + "\nquit");
+            System.out.println("""
+                    Choose one of the following commands:
+                    addIncomingVehicles filePath
+                    exportDealerVehicles dealerShipID
+                    displayDealerVehicles
+                    enableDealerVehicleAcquisition dealerShipID
+                    disableDealerVehicleAcquisition dealerShipID
+                    quit""");
 
             command = scanner.nextLine();
 
@@ -36,7 +39,7 @@ public class Main {
 
     private static boolean checkCommand(String command, VehicleJSONParser json, DealerGroup dealerGroup) {
         String[] commandAndParameter = command.split(" ", 2);
-        Dealer dealer;
+        Dealership dealer;
 
         switch (commandAndParameter[0]) {
             case "addIncomingVehicles":
@@ -50,7 +53,7 @@ public class Main {
                 }
                 break;
             case "displayDealerVehicles":
-                dealerGroup.displayDealersVehicles();
+                dealerGroup.displayDealerVehicles();
                 break;
             case "enableDealerVehicleAcquisition":
                 dealer = getDealer(dealerGroup, commandAndParameter);
@@ -73,9 +76,9 @@ public class Main {
         return true;
     }
 
-    private static Dealer getDealer(DealerGroup dealerGroup, String[] commandAndParameter) {
+    private static Dealership getDealer(DealerGroup dealerGroup, String[] commandAndParameter) {
         if (commandAndParameter.length > 1) {
-            Dealer dealer = dealerGroup.getDealer(commandAndParameter[1]);
+            Dealership dealer = dealerGroup.getDealer(Integer.parseInt(commandAndParameter[1]));
             if (dealer != null) {
                 return dealer;
             } else {

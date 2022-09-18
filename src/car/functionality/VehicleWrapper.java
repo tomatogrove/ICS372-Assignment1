@@ -1,6 +1,6 @@
 package car.functionality;
 
-import car.inventory.Vehicle;
+import iabGUI.Vehicle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ public class VehicleWrapper {
         return car_inventory;
     }
 
-    public void setCar_inventory(List<Vehicle> car_inventory) {
+    public void setCar_inventory(ArrayList<Vehicle> car_inventory) {
         this.car_inventory = car_inventory;
     }
 }

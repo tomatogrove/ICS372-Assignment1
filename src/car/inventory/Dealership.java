@@ -1,4 +1,7 @@
-package src;
+package car.inventory;
+
+import iabGUI.Vehicle;
+
 import java.util.Map;
 import java.util.HashMap;
 

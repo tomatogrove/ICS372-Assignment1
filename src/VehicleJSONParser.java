@@ -1,11 +1,10 @@
-package groupProject;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Map;
 import java.nio.file.Path;
 
-import org.codehaus.jackson.map.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
