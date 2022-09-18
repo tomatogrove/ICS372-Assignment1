@@ -1,0 +1,12 @@
+title Add incoming vehicle
+
+Main->Main: checkCommand(...)
+Main->dealerGroup: addIncomingVehicles(List<Vehicle> vehicles)
+loop
+dealerGroup->Dealership: addIncomingVehicle(...)
+note right of dealerGroup: pushes each vehicle's information in the list from Main
+Dealership->Vehicle: vehicle(...)
+note right of Dealership: constructs new vehicle object for each vehicle from the list
+Vehicle-->Dealership: result
+note right of Dealership: stores new vehicle object in its inventory field
+end
