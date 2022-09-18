@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class Dealership {
     private int dealerID;
     private boolean vehicleAcquisition;
-    private Map<Integer, Vehicle> vehicleInventory;
+    private Map<String, Vehicle> vehicleInventory;
 
     
     //getters
@@ -17,7 +17,7 @@ public class Dealership {
         return vehicleAcquisition;
     }
 
-    public Map<Integer, Vehicle> getVehicleInventory() {
+    public Map<String, Vehicle> getVehicleInventory() {
         return vehicleInventory;
     }
 
@@ -27,13 +27,13 @@ public class Dealership {
         vehicleInventory = new HashMap<>();
     }
     //constructors
-    public Dealership(int dealerID, boolean vehicleAcquisition, HashMap<Integer, Vehicle> vehicleInventory) {
+    public Dealership(int dealerID, boolean vehicleAcquisition, HashMap<String, Vehicle> vehicleInventory) {
         this.dealerID = dealerID;
         this.vehicleAcquisition = vehicleAcquisition;
         this.vehicleInventory = vehicleInventory;
     }
     //methods
-    public void addIncomingVehicle(int stockNumber, Vehicle car) {
+    public void addIncomingVehicle(String stockNumber, Vehicle car) {
         if(car.getVehicleType().equalsIgnoreCase("SUV") || car.getVehicleType().equalsIgnoreCase("Sedan") || car.getVehicleType().equalsIgnoreCase("Pickup") || car.getVehicleType().equalsIgnoreCase("Sports Car")) {
             if(vehicleAcquisition == true && this.vehicleInventory.containsKey(stockNumber) == false){
                 this.vehicleInventory.put(stockNumber, car);
@@ -57,7 +57,7 @@ public class Dealership {
 
     public String inventory() {
         String inventory = "";
-        for( Map.Entry<Integer, Vehicle> car : this.vehicleInventory.entrySet()) {
+        for( Map.Entry<String, Vehicle> car : this.vehicleInventory.entrySet()) {
             inventory += car.getValue().toString();
         }
         return inventory;
