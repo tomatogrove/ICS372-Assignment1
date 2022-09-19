@@ -3,13 +3,13 @@ import java.util.Map;
 import java.util.HashMap;
 
 public class Dealership {
-    private int dealerID;
+    private String dealerID;
     private boolean vehicleAcquisition;
     private Map<String, Vehicle> vehicleInventory;
 
     
     //getters
-    public int getDealerID() {
+    public String getDealerID() {
         return dealerID;
     }
 
@@ -21,13 +21,13 @@ public class Dealership {
         return vehicleInventory;
     }
 
-    public Dealership(int newDealer) {
+    public Dealership(String newDealer) {
         dealerID = newDealer;
         vehicleAcquisition = true;
         vehicleInventory = new HashMap<>();
     }
     //constructors
-    public Dealership(int dealerID, boolean vehicleAcquisition, HashMap<String, Vehicle> vehicleInventory) {
+    public Dealership(String dealerID, boolean vehicleAcquisition, HashMap<String, Vehicle> vehicleInventory) {
         this.dealerID = dealerID;
         this.vehicleAcquisition = vehicleAcquisition;
         this.vehicleInventory = vehicleInventory;
