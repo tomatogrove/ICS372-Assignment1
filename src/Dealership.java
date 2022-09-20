@@ -38,9 +38,9 @@ public class Dealership {
             if(vehicleAcquisition == true && this.vehicleInventory.containsKey(stockNumber) == false){
                 this.vehicleInventory.put(stockNumber, car);
             } else if(vehicleAcquisition == false){
-                System.out.println("This dealer is not allowed to add additional vehicles to their inventory\n");
+                System.out.println("Dealer " + this.getDealerID() + " is not allowed to add additional vehicles to their inventory\n");
             } else if(this.vehicleInventory.containsKey(stockNumber) == true) {
-                System.out.println("This vehicle is already in this dealer's inventory\n");
+                System.out.println("Vehicle " + car.getVehicleID() + " is already in this dealer's inventory\n");
             }
         } else {
             System.out.println("Not a valid vehicle type.\n");
