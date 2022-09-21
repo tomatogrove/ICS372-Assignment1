@@ -36,7 +36,7 @@ public class Main {
             command = scanner.nextLine();
 
             keepRunning = checkCommand(command, dealerGroup);
-            System.out.println("------------------------------------------------");
+            System.out.println("------------------------------------------------\n");
         }
     }
 
@@ -52,6 +52,7 @@ public class Main {
                 dealer = getDealer(dealerGroup, commandAndParameter);
                 if (dealer != null) {
                     new VehicleJSONParser().write(dealer);
+                    System.out.println("Dealer " + dealer.getDealerID() + " vehicle's exported successfully!");
                 }
                 break;
             case "displayDealerVehicles":
@@ -80,16 +81,21 @@ public class Main {
 
     //would be better if it was a vehicle from the beginning. This is an unsafe cast.
     private static void tryAddVehicles(String[] commandAndParameter, DealerGroup dealerGroup) {
-        try {
-            VehicleJSONParser simpleParser = new VehicleJSONParser(commandAndParameter[1]);
-            ObjectMapper mapper = new ObjectMapper();
+        if (commandAndParameter.length > 1) {
+            try {
+                VehicleJSONParser simpleParser = new VehicleJSONParser(commandAndParameter[1]);
+                ObjectMapper mapper = new ObjectMapper();
 
-            List<Vehicle> simpleVehicles = mapper.convertValue(simpleParser.buildMap().get("car_inventory"), new TypeReference<>() {});
+                List<Vehicle> simpleVehicles = mapper.convertValue(simpleParser.buildMap().get("car_inventory"), new TypeReference<>() {
+                });
 
-            simpleVehicles.toString();
-            dealerGroup.addIncomingVehicles(simpleVehicles);
-        } catch (IOException | ParseException e) {
-            System.out.println("Input file is invalid or inaccessible");
+                simpleVehicles.toString();
+                dealerGroup.addIncomingVehicles(simpleVehicles);
+            } catch (IOException | ParseException e) {
+                System.out.println("Input file is invalid or inaccessible");
+            }
+        } else {
+            System.out.println("Enter a file");
         }
     }
 
