@@ -78,20 +78,24 @@ public class Main {
         }
         return true;
     }
-    
+
     private static void tryAddVehicles(String[] commandAndParameter, DealerGroup dealerGroup) {
         if (commandAndParameter.length > 1) {
             try {
                 VehicleJSONParser simpleParser = new VehicleJSONParser(commandAndParameter[1]);
                 ObjectMapper mapper = new ObjectMapper();
 
-                List<Vehicle> simpleVehicles = mapper.convertValue(simpleParser.buildMap().get("car_inventory"), new TypeReference<>() {
-                });
+                if (simpleParser.buildMap() != null) {
+                    List<Vehicle> simpleVehicles = mapper.convertValue(simpleParser.buildMap().get("car_inventory"), new TypeReference<>() {
+                    });
 
-                simpleVehicles.toString();
-                dealerGroup.addIncomingVehicles(simpleVehicles);
+                    dealerGroup.addIncomingVehicles(simpleVehicles);
+                } else {
+                    System.out.println("Input file is formatted incorrectly");
+                }
+
             } catch (IOException | ParseException e) {
-                System.out.println("Input file is invalid or inaccessible");
+                System.out.println("Input file path is invalid or inaccessible");
             }
         } else {
             System.out.println("Enter a file");
