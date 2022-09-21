@@ -1,7 +1,5 @@
 package car.inventory;
 
-import iabGUI.Vehicle;
-
 import java.util.Map;
 import java.util.HashMap;
 
@@ -30,7 +28,7 @@ public class Dealership {
         vehicleInventory = new HashMap<>();
     }
     //constructors
-    public Dealership(int dealerID, boolean vehicleAcquisition, HashMap<Integer, Vehicle> vehicleInventory) {
+    public Dealership(String dealerID, boolean vehicleAcquisition, HashMap<String, Vehicle> vehicleInventory) {
         this.dealerID = dealerID;
         this.vehicleAcquisition = vehicleAcquisition;
         this.vehicleInventory = vehicleInventory;

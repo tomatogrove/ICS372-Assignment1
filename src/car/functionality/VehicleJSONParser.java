@@ -8,7 +8,6 @@ import java.util.Map;
 import java.nio.file.Path;
 
 import car.inventory.Dealership;
-import iabGUI.Vehicle;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONArray;
@@ -31,6 +30,8 @@ public class VehicleJSONParser {
 	private Object obj;
 	private JSONObject jo;
 	private JSONArray jsonArray = new JSONArray();
+
+	VehicleJSONParser() {}
 	
 	VehicleJSONParser(String filePath) throws IOException, ParseException{
 		this.file = Path.of(filePath);
@@ -98,7 +99,7 @@ public class VehicleJSONParser {
 			VehicleWrapper wrapper = new VehicleWrapper();
 			wrapper.setCar_inventory(new ArrayList<>(dealer.getVehicleInventory().values()));
 
-			mapper.writeValue(file, wrapper);
+			mapper.writerWithDefaultPrettyPrinter().writeValue(file, wrapper);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

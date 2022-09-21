@@ -1,6 +1,6 @@
 package car.functionality;
 
-import iabGUI.Vehicle;
+import car.inventory.Vehicle;
 
 import java.util.ArrayList;
 import java.util.List;

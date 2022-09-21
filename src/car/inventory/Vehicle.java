@@ -1,6 +1,8 @@
-package iabGUI;
+package car.inventory;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.Date;
 
 public class Vehicle {
 	@JsonProperty("vehicle_id")
@@ -15,13 +17,13 @@ public class Vehicle {
 	private String vehicleManufacturer;
 	private Double price;
 	@JsonProperty("acquisition_date")
-	private String acquisitionDate;
+	private Date acquisitionDate;
 
 	//make Jackson happy
 	public Vehicle() {}
 
 	public Vehicle(String vehicleID, String dealershipID, String vehicleType, String vehicleModel, String vehicleManufacturer,
-			Double price, String acquisitionDate) {
+			Double price, Date acquisitionDate) {
 		this.vehicleID = vehicleID;
 		this.dealershipID = dealershipID;
 		this.vehicleType = vehicleType;
@@ -79,11 +81,11 @@ public class Vehicle {
 		this.price = price;
 	}
 
-	public String getAcquisitionDate() {
+	public Date getAcquisitionDate() {
 		return acquisitionDate;
 	}
 
-	public void setAcquisitionDate(String acquisitionDate) {
+	public void setAcquisitionDate(Date acquisitionDate) {
 		this.acquisitionDate = acquisitionDate;
 	}
 

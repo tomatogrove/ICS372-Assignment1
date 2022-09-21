@@ -1,61 +1,82 @@
 package car.inventory;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map.Entry;
-
-import iabGUI.Vehicle;
-import org.json.*;
+import java.util.Random;
 
 public class DealerGroup {
 
-	private Dealership[] dealers;
-
-	public JSONObject exportDealerVehicles() {
-		JSONObject file = new JSONObject();
-
-		for (Dealership dealer : dealers) {
-			for (Entry<Integer, Vehicle> vehicle : dealer.getVehicleInventory().entrySet()) {
-				try {
-					file.put("dealership_id", vehicle.getValue().getDealershipID());
-					file.put("vehicle_type", vehicle.getValue().getVehicleType());
-					file.put("vehicle_manufacturer", vehicle.getValue().getVehicleManufacturer());
-					file.put("vehicle_model", vehicle.getValue().getVehicleModel());
-					file.put("vehicle_id", vehicle.getValue().getVehicleID());
-					file.put("price", vehicle.getValue().getPrice());
-					file.put("acquisition_date", vehicle.getValue().getAcquisitionDate());
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
+	private ArrayList<Dealership> dealers;
+	
+	public DealerGroup() {
+		this.dealers = new ArrayList<Dealership>();
+	}
+	
+	public Dealership getDealerByID(String dealerID) {
+		Dealership getDealer = null;
+		for(int i = 0; i < dealers.size(); i++) {
+			if(dealerID.equalsIgnoreCase(dealers.get(i).getDealerID()) ) {
+			getDealer = dealers.get(i);
 			}
 		}
-		return file;
+		return getDealer;
 	}
-
+	
+	public Dealership getDealerByIndex(int n) {
+		Dealership getDealer = null;
+		for(int i = 0; i < dealers.size(); i++) {
+			if(n == i) {
+				getDealer = dealers.get(i);
+			}
+		}
+		return getDealer;
+	}
+	
 	public String displayDealerVehicles() {
-		for (Dealership dealer : dealers) {
-			for (Vehicle vehicle : dealer.getVehicleInventory().values()) {
+		for(Dealership dealer : dealers) {
+			for(Vehicle vehicle : dealer.getVehicleInventory().values()) {
 				System.out.println(vehicle);
 			}
 		}
 		return null;
 	}
-
-	public Dealership getDealer() {
-		Dealership getDealer = new Dealership("");
-		for (Dealership dealer : dealers) {
-			getDealer = dealer;
+	
+	public String getDealer() {
+		for(Dealership dealer: dealers) {
+			System.out.println(dealer);
 		}
-		return getDealer;
-	}
-
-
-	//methods that need to be implemented
-	public Dealership getDealer(String dealerID) {
 		return null;
+	}
+	
+	public void addIncomingVehicle(Vehicle newVehicle) {
+		for(int i = 0; i < dealers.size(); i++) {
+			if(newVehicle.getDealershipID() == dealers.get(i).getDealerID()) {
+				dealers.get(i).addIncomingVehicle(newVehicle.getVehicleID(), newVehicle);
+			}
+			else {
+				Dealership newDealer = new Dealership(getRandomNumberString());
+				newDealer.addIncomingVehicle(newVehicle.getVehicleID(), newVehicle);
+				dealers.add(newDealer);
+			}
+		}
+	}
+	
+	public static String getRandomNumberString() {
+		Random rnd = new Random();
+	    int number = rnd.nextInt(99999);
+
+	    // this will convert any number sequence into 6 character.
+	    return String.format("%06d", number);
 	}
 
 	public void addIncomingVehicles(List<Vehicle> vehicles) {
-
+		for (Vehicle vehicle : vehicles ) {
+			Dealership dealer = getDealerByID(vehicle.getDealershipID());
+			if (dealer == null) {
+				dealer = new Dealership(vehicle.getDealershipID());
+				dealers.add(dealer);
+			}
+			dealer.addIncomingVehicle(vehicle.getVehicleID(), vehicle);
+		}
 	}
-
 }

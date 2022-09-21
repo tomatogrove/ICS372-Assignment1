@@ -2,18 +2,20 @@ package car.functionality;
 
 import car.inventory.DealerGroup;
 import car.inventory.Dealership;
-import iabGUI.Vehicle;
-import org.json.simple.parser.ParseException;
+import car.inventory.Vehicle;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.simple.parser.ParseException;
 import java.io.IOException;
-import java.util.*;
-import java.util.stream.Collectors;
+
+import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 
 
     public static void main(String[]args) {
-        JacksonVehicleJSONParser json = new JacksonVehicleJSONParser();
         DealerGroup dealerGroup = new DealerGroup();
         boolean keepRunning = true;
         String command;
@@ -33,27 +35,23 @@ public class Main {
 
             command = scanner.nextLine();
 
-            keepRunning = checkCommand(command, json, dealerGroup);
+            keepRunning = checkCommand(command, dealerGroup);
             System.out.println("------------------------------------------------");
         }
     }
 
-    private static boolean checkCommand(String command, JacksonVehicleJSONParser jacksonParser, DealerGroup dealerGroup) {
+    private static boolean checkCommand(String command, DealerGroup dealerGroup) {
         String[] commandAndParameter = command.split(" ", 2);
         Dealership dealer;
 
         switch (commandAndParameter[0]) {
             case "addIncomingVehicles":
-                List<Vehicle> vehicles = jacksonParser.read(commandAndParameter[1]);
-                dealerGroup.addIncomingVehicles(vehicles);
-
                 Main.tryAddVehicles(commandAndParameter, dealerGroup);
-
                 break;
             case "exportDealerVehicles":
                 dealer = getDealer(dealerGroup, commandAndParameter);
-                if(dealer != null) {
-                    jacksonParser.write(dealer);
+                if (dealer != null) {
+                    new VehicleJSONParser().write(dealer);
                 }
                 break;
             case "displayDealerVehicles":
@@ -84,12 +82,12 @@ public class Main {
     private static void tryAddVehicles(String[] commandAndParameter, DealerGroup dealerGroup) {
         try {
             VehicleJSONParser simpleParser = new VehicleJSONParser(commandAndParameter[1]);
+            ObjectMapper mapper = new ObjectMapper();
 
-            List<Object> simpleVehicles = ((List<Object>) simpleParser.buildMap().get("car_inventory")).stream()
-                    .map(o -> ((LinkedHashMap<String, Object>) o).).collect(Collectors.toList());
+            List<Vehicle> simpleVehicles = mapper.convertValue(simpleParser.buildMap().get("car_inventory"), new TypeReference<>() {});
 
             simpleVehicles.toString();
-//            dealerGroup.addIncomingVehicles(simpleVehicles);
+            dealerGroup.addIncomingVehicles(simpleVehicles);
         } catch (IOException | ParseException e) {
             System.out.println("Input file is invalid or inaccessible");
         }
@@ -97,7 +95,7 @@ public class Main {
 
     private static Dealership getDealer(DealerGroup dealerGroup, String[] commandAndParameter) {
         if (commandAndParameter.length > 1) {
-            Dealership dealer = dealerGroup.getDealer(commandAndParameter[1]);
+            Dealership dealer = dealerGroup.getDealerByID(commandAndParameter[1]);
             if (dealer != null) {
                 return dealer;
             } else {
