@@ -78,8 +78,7 @@ public class Main {
         }
         return true;
     }
-
-    //would be better if it was a vehicle from the beginning. This is an unsafe cast.
+    
     private static void tryAddVehicles(String[] commandAndParameter, DealerGroup dealerGroup) {
         if (commandAndParameter.length > 1) {
             try {
