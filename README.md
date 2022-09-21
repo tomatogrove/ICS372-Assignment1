@@ -3,6 +3,7 @@
 The program is best run through an IDE with the console acting as the UI. 
 When it boots up, the console will display 6 possible user inputs with 4 accepting parameters.
 User input should look like this:
+
 	command parameter
 
 
