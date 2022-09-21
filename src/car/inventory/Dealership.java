@@ -1,4 +1,5 @@
-package src;
+package car.inventory;
+
 import java.util.Map;
 import java.util.HashMap;
 

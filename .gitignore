@@ -1,1 +1,8 @@
+**/build
+**/.idea
+*.class
+*.log
+**/bin
+**/.project
 ICS_372/bin/.project
+*.iml
